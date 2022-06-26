@@ -1,16 +1,21 @@
 // печатать самую длинную строку без каких-либо ограничений на ее размер.
+//у меня на ввод подается ограниченное число строк, но, надеюсь, если это будет нужно, вы сможете сделать динамическое количество вводимых строк
 int main(void){
-  char *buf;
-  char **s = (char **) malloc(sizeof(char *));
+  char *buf; //где будет находится самая длинная строка
+  char **s = (char **) malloc(sizeof(char *)); //выделение памяти под массив указателей
   for ( int i = 0; i < 4; i++){
-    s[i] = (char*) malloc (sizeof(char));
+    s[i] = (char*) malloc (sizeof(char)); //выделение памяти под слово (под вопросом)
     scanf("%s", s[i]);
   }
   for ( int i = 0; i < 4; i++){
     if (strlen(s[i]) > strlen(buf)){
-      buf = (char*) malloc (strlen(s[i]) + 1);
+      buf = (char*) malloc (strlen(s[i]) + 1); //поиск, выделение памяти и запись наидлиннейшей строки
       buf = s[i];
       }
   }
-  printf("%s", buf);
+  printf("%s", buf); 
+  free(buf);
+  for ( int i = 0; i < 4; i++)
+    free(s[i]);
+  free(s);
 }
